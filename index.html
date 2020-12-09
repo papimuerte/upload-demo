@@ -1,0 +1,40 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Upload</title>
+</head>
+
+<body>
+    <input id="file" type="file" />
+    <div id="progress"></div>
+    <script>
+        function onProgress(e) {
+            progress.innerHTML = (e.loaded / e.total).toString();
+        }
+
+        function onLoad() {
+            if (this.status == 200) {
+                console.log("success");
+            }
+        }
+
+        function onInputChange(e) {
+            const file = e.target.files[0];
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/upload", true);
+            xhr.upload.addEventListener('progress', onProgress);
+            xhr.addEventListener('load', onLoad);
+            xhr.send(file);
+        }
+
+        const input = document.getElementById('file');
+        const progress = document.getElementById('progress');
+        input.addEventListener('change', onInputChange);
+    </script>
+</body>
+
+</html>

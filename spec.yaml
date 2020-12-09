@@ -1,0 +1,9 @@
+name: upload
+region: fra
+services:
+  - name: upload
+    image: 
+      registry_type: DOCR
+      repository: upload
+      tag: latest   
+    http_port: 3000
